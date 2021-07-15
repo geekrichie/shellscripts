@@ -7,4 +7,19 @@ installgo() {
     echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
     source /etc/profile
 }
-installgo
+
+setgoproxy()  {
+     go env -w GO111MODULE=on
+     go env -w GOPROXY=https://goproxy.cn,direct
+}
+
+case $1 in
+    install)
+        installgo
+        ;;
+    proxy)
+        setgoproxy
+        ;;
+esac
+
+       
